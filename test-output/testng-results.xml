@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-02-11T17:01:05 IST" name="Default suite" finished-at="2026-02-11T17:01:09 IST" duration-ms="4368">
+    <groups>
+    </groups>
+    <test started-at="2026-02-11T17:01:05 IST" name="Default test" finished-at="2026-02-11T17:01:09 IST" duration-ms="4368">
+      <class name="testcases.RegistrationTC001">
+        <test-method is-config="true" signature="openApp()[pri:0, instance:testcases.RegistrationTC001@564fabc8]" started-at="2026-02-11T17:01:05 IST" name="openApp" finished-at="2026-02-11T17:01:07 IST" duration-ms="1827" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApp -->
+        <test-method signature="newAccountRegistration()[pri:0, instance:testcases.RegistrationTC001@564fabc8]" started-at="2026-02-11T17:01:07 IST" name="newAccountRegistration" finished-at="2026-02-11T17:01:09 IST" duration-ms="2253" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- newAccountRegistration -->
+        <test-method is-config="true" signature="closeApp()[pri:0, instance:testcases.RegistrationTC001@564fabc8]" started-at="2026-02-11T17:01:09 IST" name="closeApp" finished-at="2026-02-11T17:01:09 IST" duration-ms="256" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeApp -->
+      </class> <!-- testcases.RegistrationTC001 -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
