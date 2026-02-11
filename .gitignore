@@ -1,1 +1,8 @@
-/target/
+# Eclipse metadata
+.settings/
+.classpath
+.project
+
+# Ignore build outputs
+target/
+test-output/
