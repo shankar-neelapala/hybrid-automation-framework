@@ -43,3 +43,12 @@ dependency-reduced-pom.xml
 bin/
 out/
 *.class
+
+############################
+# Selenium / Test artifacts
+############################
+test-output/
+reports/
+screenshots/
+allure-results/
+allure-report/

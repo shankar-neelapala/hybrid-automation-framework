@@ -11,16 +11,23 @@ public class HomePage extends BasePage{
 	}
 
 	@FindBy(xpath = "//li[@class='list-inline-item']//i[@class='fa-solid fa-caret-down']")
-	WebElement myAccountLink;
+	WebElement linkMyAccount;
 	
 	@FindBy(xpath = "//a[normalize-space()='Register']")
-	WebElement registerLink;
+	WebElement linkRegister;
+	
+	@FindBy(xpath = "//a[normalize-space()='Login']")
+	WebElement linkLogin;
 	
 	public void clickOnMyAccount() {
-		myAccountLink.click();
+		linkMyAccount.click();
 	}
 	
 	public void clickOnRegister() {
-		registerLink.click();
+		linkRegister.click();
+	}
+	
+	public void clickOnLogin() {
+		linkLogin.click();
 	}
 }

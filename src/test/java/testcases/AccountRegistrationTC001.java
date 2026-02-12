@@ -7,9 +7,9 @@ import pageobjects.AccountRegistrationPage;
 import pageobjects.HomePage;
 import testbase.BaseClass;
 
-public class RegistrationTC001 extends BaseClass{
+public class AccountRegistrationTC001 extends BaseClass{
 	
-	@Test
+	@Test(groups = {"regression", "master"})
 	public void newAccountRegistration() {
 		logger.info("*****Starting RegistrationTC001*****");
 		HomePage homePage = new HomePage(driver);
