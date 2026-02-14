@@ -14,13 +14,13 @@ public class LoginDataDrivenTC003 extends BaseClass{
 	@Test(dataProvider = "login-data",dataProviderClass = DataProviders.class, groups = {"datadriven"})
 	public void loginDataDrivenTest(String email, String password, String result) {
 		logger.info("*****Starting LoginDataDrivenTC003*****");
-		HomePage hp = new HomePage(driver);
+		HomePage hp = new HomePage(getDriver());
 		hp.clickOnMyAccount();
 		logger.info("Clicking on login");
 		hp.clickOnLogin();
 		
 		logger.info("Providing email and password");
-		LoginPage lp = new LoginPage(driver);		
+		LoginPage lp = new LoginPage(getDriver());		
 		lp.setEmail(email);
 		lp.setPassword(password);
 		logger.info("Clicking on login button");
@@ -28,7 +28,7 @@ public class LoginDataDrivenTC003 extends BaseClass{
 		
 		//validation
 		logger.info("validating results");
-		MyAccountPage mp= new MyAccountPage(driver);
+		MyAccountPage mp= new MyAccountPage(getDriver());
 		boolean status = mp.isMyAccountPageExists();
 		//System.out.println(status);
 		if (result.equalsIgnoreCase("valid")) {

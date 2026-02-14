@@ -3,7 +3,6 @@ package pageobjects;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class MyAccountPage extends BasePage {
@@ -12,10 +11,13 @@ public class MyAccountPage extends BasePage {
 		super(driver);
 	}
 	
-	@FindBy(xpath = "//div[@id='content']//h1")
+	@FindBy(xpath = "//h1[normalize-space()='Your Account Has Been Created!']")
+	WebElement txtConfirmAccount;
+	
+	@FindBy(xpath = "//h2[normalize-space()='My Account']")
 	WebElement msgHeading;
 	
-	@FindBy(xpath = "//div[@class='list-group mb-3']//a[.='Logout']")
+	@FindBy(xpath = "//a[@class='list-group-item'][normalize-space()='Logout']")
 	WebElement linkLogout;
 	
 	public boolean isMyAccountPageExists() {
@@ -29,14 +31,10 @@ public class MyAccountPage extends BasePage {
 	
 	
 	public void clickOnLogout() {
-		//((JavascriptExecutor) driver).executeScript("arguments[0].click();", linkLogout);
-		//linkLogout.click();
-		
-		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		//wait.until(ExpectedConditions.elementToBeClickable(linkLogout)).click();
-		
-		Actions act = new Actions(driver);
-		act.moveToElement(linkLogout).click().perform();
+		linkLogout.click();
 	}
 
+	public String confirmAccount() {
+		return txtConfirmAccount.getText();
+	}
 }

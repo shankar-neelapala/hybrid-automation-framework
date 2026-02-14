@@ -27,7 +27,16 @@ import org.testng.annotations.Parameters;
 @SuppressWarnings("deprecation")
 public class BaseClass {
 
-	public static WebDriver driver;
+	private static  ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+		
+	public static WebDriver getDriver() {
+	    return driver.get();
+	}
+
+	public static void setDriver(WebDriver driverInstance) {
+	    driver.set(driverInstance);
+	}
+
 	public Logger logger;
 	public Properties prop;
 	
@@ -45,35 +54,37 @@ public class BaseClass {
 			switch(os.toLowerCase()) {
 			case "windows" : cap.setPlatform(Platform.WIN11);break;
 			case "mac" : cap.setPlatform(Platform.MAC);break;
+			case "linux" : cap.setPlatform(Platform.LINUX);break;
 			default : logger.info("Invalid platform name");return;
 			}
 			
 			switch (browser.toLowerCase()) {
 			case "chrome" : cap.setBrowserName("chrome");break;
 			case "edge" : cap.setBrowserName("MicrosoftEdge");break;
+			case "firefox" : cap.setBrowserName("firefox");break;
 			default : logger.info("Invalid browser name");return;
 			}
 			
-			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
+			setDriver(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap));
 		}
 		
 		if(prop.getProperty("execution-env").equalsIgnoreCase("local")) {
 			switch (browser.toLowerCase()) {
-			case "chrome" : driver = new ChromeDriver();logger.info("Executing on chrome");break;
-			case "edge" : driver = new EdgeDriver();logger.info("Executing on edge");break;
+			case "chrome" : setDriver(new ChromeDriver());logger.info("Executing on chrome");break;
+			case "edge" : setDriver(new EdgeDriver());logger.info("Executing on edge");break;
 			default:logger.info("Invalid Browser");return;
 			}
 		}
 		
-		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.manage().window().maximize();
-		driver.get(prop.getProperty("appurl"));//reading url from properties file
+		getDriver().manage().deleteAllCookies();
+		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		getDriver().manage().window().maximize();
+		getDriver().get(prop.getProperty("appurl"));//reading url from properties file
 	}
 	
 	@AfterClass(groups = {"sanity", "regression", "master"})
 	public void tearDown() {
-		driver.quit();
+		getDriver().quit();
 	}
 	
 	public String getRandomString() {
@@ -86,8 +97,12 @@ public class BaseClass {
 	    return letters + digit;
 	}
 	
-	public String captureScreenshot(String name) {
-		TakesScreenshot ts = (TakesScreenshot) driver;
+	public String getRandomNumeric() {
+		return RandomStringUtils.randomNumeric(10);
+	}
+	
+	public static String captureScreenshot(String name) {
+		TakesScreenshot ts = (TakesScreenshot) getDriver();
 		File src = ts.getScreenshotAs(OutputType.FILE);
 		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 		
